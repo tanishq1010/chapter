@@ -17,7 +17,7 @@ for ind in df.index:
 
     var = (df["Question Id"][ind])
     # print(var)
-    if var != "" and var != "NaN" and var != None  and var != "error"and var!=" ":
+    if var != "" and var != "NaN" and var != None  and var != "error"and var!=" " and var!="nan":
         print(var)
         df["Question_id"][ind] = int(var)
         # print(df["Question_id"][ind])
