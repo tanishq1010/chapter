@@ -10,26 +10,34 @@ df5 = pd.read_csv("Chapter_Questions_5.csv")
 df = pd.concat([df1, df2, df3, df4, df5])
 df.to_csv("Chapter_Questions.csv", index=False)
 
+df = pd.read_csv("Chapter_Questions.csv")
 list1 = [""] * len(df)
 df["Question_id"] = list1
 for ind in df.index:
-    try:
-        var = int(df["Question Id"][ind])
-        df["Question_id"][ind] = var
-    except Exception as e:
+
+    var = (df["Question Id"][ind])
+    # print(var)
+    if var != "" and var != "NaN" and var != None  and var != "error"and var!=" ":
+        print(var)
+        df["Question_id"][ind] = int(var)
+        # print(df["Question_id"][ind])
+    else:
+        print(var)
+        print("------------------------------------------")
         df["Question_id"][ind] = ""
+    # break
 df.to_csv("Chapter_Questions.csv", index=False)
 
 df = pd.read_csv("Question_bank.csv").drop_duplicates()
 df1 = pd.read_csv("Chapter_Questions.csv").drop_duplicates()
 df2 = pd.read_csv("Chapter_hygiene.csv").drop_duplicates()
-
+#
 # print(int(" "))
 list1 = [""] * len(df)
 df["question live"] = list1
 for ind in df.index:
 
-        print(int(df["id"][ind]))
+        # print(int(df["id"][ind]))
         df_new = df1.loc[df1["Question_id"] == int(df["id"][ind])]
         if len(df_new) > 0:
             df["question live"][ind] = "yes"
