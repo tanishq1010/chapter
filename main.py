@@ -10,7 +10,7 @@ df5 = pd.read_csv("Chapter_Questions_5.csv")
 
 df = pd.concat([df1, df2, df3, df4, df5])
 df.replace('', np.nan, inplace=True)
-print(df)
+# print(df)
 df.to_csv("Chapter_Questions.csv", index=False)
 
 df = pd.read_csv("Chapter_Questions.csv")
@@ -27,7 +27,15 @@ for ind in df.index:
             # print(df["Question_id"][ind])
         else:
             print(var)
-            print("------------------------------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
+            print("--------------------EXCEPT---------------------")
             df["Question_id"][ind] = ""
     except:
         print(var)
@@ -35,7 +43,7 @@ for ind in df.index:
         df["Question_id"][ind] = ""
 
     # break
-# df.to_csv("Chapter_Questions.csv", index=False)
+df.to_csv("Chapter_Questions.csv", index=False)
 
 df = pd.read_csv("Question_bank.csv").drop_duplicates()
 df1 = pd.read_csv("Chapter_Questions.csv").drop_duplicates()
@@ -53,7 +61,7 @@ for ind in df.index:
     else:
         df["question live"][ind] = "no"
 
-# df.to_csv("Question_bank.csv", index=False)
+df.to_csv("Question_bank.csv", index=False)
 
 # list1 = [""] * len(df2)
 # df2["Questions Live"] = list1
