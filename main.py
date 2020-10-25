@@ -1,5 +1,6 @@
 import pandas as pd
 import traceback
+import numpy as np
 
 df1 = pd.read_csv("Chapter_Questions_1.csv")
 df2 = pd.read_csv("Chapter_Questions_2.csv")
@@ -8,6 +9,7 @@ df4 = pd.read_csv("Chapter_Questions_4.csv")
 df5 = pd.read_csv("Chapter_Questions_5.csv")
 
 df = pd.concat([df1, df2, df3, df4, df5])
+df.replace('', np.nan, inplace=True)
 df.to_csv("Chapter_Questions.csv", index=False)
 
 df = pd.read_csv("Chapter_Questions.csv")
