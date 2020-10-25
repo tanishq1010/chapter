@@ -14,7 +14,7 @@ df=pd.read_csv("Question_bank.csv").drop_duplicates()
 df1 = pd.read_csv("Chapter_Questions.csv").drop_duplicates()
 df2 = pd.read_csv("Chapter_hygiene.csv").drop_duplicates()
 
-print(int(" "))
+# print(int(" "))
 list1 = [""] * len(df1)
 df1["Present in CG"] = list1
 for ind in df1.index:
