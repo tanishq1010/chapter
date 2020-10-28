@@ -1,4 +1,4 @@
-from goal_exam_extractor import goal_exam_grade_extractor
+# from goal_exam_extractor import goal_exam_grade_extractor
 from home_data_extractor import home_data
 import pandas as pd
 
