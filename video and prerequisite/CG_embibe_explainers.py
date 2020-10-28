@@ -51,7 +51,7 @@ class Source(object):
                         # print(id)
                         id = int(id)
                         # print(title, "\n")
-                        if item["content"]["key_attributes"]["type"] == "Topic Explainer":
+                        if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"]["type"] ==  "Solved Problems asked in exams":
                             sequence = (item["content"]["sequence"])
                             # print(sequence)
                             for inti in item["content"]["question_meta_tags"]:
@@ -123,7 +123,7 @@ def return_correct_sequence(exam, goal, learnpath_name):
     df.sort_values(by=['Sequence'], ascending=True,
                    inplace=True)
     # del df['length of string']
-
+    df.drop_duplicates(inplace=True)
     # df = pd.concat([df3, df])
     df11 = pd.concat([df11, df])
     df11.to_csv("Embibe_explainers_my_order.csv", index=False)

@@ -56,8 +56,8 @@ if __name__ == '__main__':
     
 
 
-    prerequisite_home(df)
-    prerequisite_cg(df)
+    # prerequisite_home(df)
+    # prerequisite_cg(df)
     
 
 
