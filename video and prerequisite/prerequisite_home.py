@@ -31,7 +31,7 @@ class Source(object):
     def main(self, df):
         df1 = pd.read_csv("Prerequisite_home.csv")
         for ind in df.index:
-            if df["Exam"][ind] == "11th CBSE":
+            # if df["Exam"][ind] == "11th CBSE":
                 # break
 
                 learnmap_id = df["Learnmap_id"][ind]
@@ -69,8 +69,8 @@ class Source(object):
 
                     df1.to_csv("Prerequisite_home.csv", index=False)
 
-            else:
-                continue
+            # else:
+            #     continue
 
 
 def prerequisite_home(df):
