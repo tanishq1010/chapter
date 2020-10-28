@@ -32,14 +32,14 @@ class Source(object):
         df1 = pd.read_csv("Prerequisite_CG.csv")
         for ind in df.index:
             # if df["Exam"][ind] == "11th CBSE":
-                # break
-
-                learnmap_id = df["Learnmap_id"][ind]
-                print("GETTING ALL Topics FOR THIS LEARN PATH FROM CG : ", learnmap_id, "\n")
-                format_refrence = df["Format_refrence"][ind]
-                subject = df["Subject_tagged"][ind]
-                learnpath_name1 = df["Learnpath_name"][ind]
-                # try:
+            # break
+            
+            learnmap_id = df["Learnmap_id"][ind]
+            print("GETTING ALL Topics FOR THIS LEARN PATH FROM CG : ", learnmap_id, "\n")
+            format_refrence = df["Format_refrence"][ind]
+            subject = df["Subject_tagged"][ind]
+            learnpath_name1 = df["Learnpath_name"][ind]
+            try:
                 response1 = self.callAPI(
                     "https://content-demo.embibe.com/fiber_app/learning_maps/filters/" + str(learnmap_id),
                     "{}", 'GET')
@@ -89,12 +89,13 @@ class Source(object):
                                                  format_refrence, learnpath_name,
                                                  "", ""]
                             df1.to_csv("Prerequisite_CG.csv", index=False)
-
-
-
-
-
-
+            except Exception as e:
+                print(traceback.format_exc())
+                df1.loc[len(df1)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
+                                     df["Grade"][ind], df["Learnpath_name"][ind], "",
+                                     format_refrence, "",
+                                     "", ""]
+                df1.to_csv("Prerequisite_CG.csv", index=False)
 
             # else:
             #     continue
@@ -123,7 +124,7 @@ def sequence(exam, goal, learnpath_name):
                    inplace=True)
     # print(df)
     df.drop_duplicates(
-                     inplace = True)
+        inplace=True)
     # print(df)
     df11 = pd.concat([df11, df])
     df11.to_csv("Prerequisite_my_order.csv", index=False)
@@ -137,7 +138,6 @@ def prerequisite_cg(df):
     df1.to_csv("Prerequisite_CG.csv", index=False)
 
     src.main(df)
-
 
 # df = pd.read_csv("positive_learn_results.csv")
 # prerequisite_cg(df)
