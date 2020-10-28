@@ -50,7 +50,7 @@ class Source(object):
                     # print(response1)
                     # print(response1.json())
                     print("\nGETTING TOPIC TITLE FOR ABOVE LEARN PATH  :\n")
-                    print(response1.json())
+                    # print(response1.json())
                     for item in response1.json():
 
                         title = item["title"]
