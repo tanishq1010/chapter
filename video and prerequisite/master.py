@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     goal_exam_grade = goal_exam_grade_extractor()
     # df=pd.read_csv("goal_exams.csv")
-    for_all_exam_goal(df)
+    for_all_exam_goal(goal_exam_grade)
 
     df = pd.read_csv("positive_learn_results.csv")
     embibe_explainers_learn(df)

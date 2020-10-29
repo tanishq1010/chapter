@@ -42,20 +42,20 @@ class Source(object):
                         if str(exam["grade"]) != "None":
                             home_data.append([_goal, str(exam["grade"]), str(exam["name"])])
 
-        df = pd.DataFrame(data=home_data, columns=["Goal", "Grade", "Exam_name"])
+        df = pd.DataFrame(data=home_data, columns=["Goal", "Grade", "Exam"])
 
-        df1 = df
-        df2 = df
-        list1 = [""] * len(df2)
-        df2["present only once"] = list1
-        for ind in df2.index:
-            df_new = df1.loc[df1['Exam_name'] == df2["Exam_name"][ind]]
-            if len(df_new) > 0:
-                df_new2 = df_new.loc[df_new['Goal'] == df2["Goal"][ind]]
-                if len(df_new2) == 1:
-                    df2["present only once"][ind] = str("yes")
-                else:
-                    df2["present only once"][ind] = str("no")
+        # df1 = df
+        # df2 = df
+        # list1 = [""] * len(df2)
+        # df2["present only once"] = list1
+        # for ind in df2.index:
+        #     df_new = df1.loc[df1['Exam_name'] == df2["Exam_name"][ind]]
+        #     if len(df_new) > 0:
+        #         df_new2 = df_new.loc[df_new['Goal'] == df2["Goal"][ind]]
+        #         if len(df_new2) == 1:
+        #             df2["present only once"][ind] = str("yes")
+        #         else:
+        #             df2["present only once"][ind] = str("no")
 
         return df
 
