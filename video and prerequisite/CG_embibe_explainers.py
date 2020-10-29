@@ -31,7 +31,7 @@ class Source(object):
         df1 = pd.read_csv("Embibe_explainers_videos.csv")
         df2=pd.read_csv("Negative_Embibe_explainers_videos.csv")
         for ind in df.index:
-            # if df["Exam"][ind] == "11th CBSE":
+            if df["Exam"][ind] == "11th CBSE":
 
                 learnpath_name1 = df["Learnpath_name"][ind]
                 print(df["Exam"][ind],"\t\t",df["Goal"][ind],"\t\t",df["Learnpath_name"][ind])
@@ -96,8 +96,8 @@ class Source(object):
                                                          df["Subject_tagged"][ind], "", ""]
                     df2 = df2.drop_duplicates()
                     df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
-            # else:
-            #     continue
+            else:
+                continue
 
 
 def return_correct_sequence(exam, goal, learnpath_name):
