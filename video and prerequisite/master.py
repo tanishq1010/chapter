@@ -13,17 +13,25 @@ from prerequisite_CG import *
 # from home_data_continue_learning import home_data
 
 
+home_data(3721404, goal_exam_grade["Goal"][ind], goal_exam_grade["Grade"][ind],
+                  goal_exam_grade["Exam_name"][ind],
+                  goal_exam_grade["Goal"][ind],'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoic3R1ZGVudCIsInRpbWVfc3RhbXAiOiIyMDIwLTEwLTE1IDE3OjQyOjI2IFVUQyIsImlzX2d1ZXN0IjpmYWxzZSwiaWQiOjM3MjE0MDQsImVtYWlsIjoiMzYxNTU5NF8xNjAyNzgzNzQ2QGVtYmliZS11c2VyLmNvbSJ9.QYI2fB25BRp4c8KNkHIKSOSYLvxARKIDGxJXstk5OMqmlZiQ-E2kult1tDHHKP7eNtNnh4-upBdjmFQeM8CkVw')
+        break
+
+
+
 def for_all_exam_goal(goal_exam_grade):
     for ind in goal_exam_grade.index:
         print(goal_exam_grade["Goal"][ind], goal_exam_grade["Exam"][ind])
-        signup_data = Signup()
-        login_data = login(signup_data[0], "embibe1234")
-        # child_data=add_user(signup_data[1],login_data[0])
-        embibe_token = login_data[1]
-        child_id = signup_data[1]
-        home_data(child_id, goal_exam_grade["Goal"][ind], goal_exam_grade["Grade"][ind],
+        # signup_data = Signup()
+        # login_data = login(signup_data[0], "embibe1234")
+        # # child_data=add_user(signup_data[1],login_data[0])
+        # embibe_token = login_data[1]
+        # child_id = signup_data[1]
+        home_data(3721404, goal_exam_grade["Goal"][ind], goal_exam_grade["Grade"][ind],
                   goal_exam_grade["Exam"][ind],
-                  goal_exam_grade["Goal"][ind], embibe_token)
+                  goal_exam_grade["Goal"][ind],'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoic3R1ZGVudCIsInRpbWVfc3RhbXAiOiIyMDIwLTEwLTE1IDE3OjQyOjI2IFVUQyIsImlzX2d1ZXN0IjpmYWxzZSwiaWQiOjM3MjE0MDQsImVtYWlsIjoiMzYxNTU5NF8xNjAyNzgzNzQ2QGVtYmliZS11c2VyLmNvbSJ9.QYI2fB25BRp4c8KNkHIKSOSYLvxARKIDGxJXstk5OMqmlZiQ-E2kult1tDHHKP7eNtNnh4-upBdjmFQeM8CkVw')
+        
 
 
 if __name__ == '__main__':
