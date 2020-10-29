@@ -34,7 +34,7 @@ class Source(object):
             # if df["Exam"][ind] == "11th CBSE":
 
                 learnpath_name1 = df["Learnpath_name"][ind]
-                print(df["Exam"][ind],"\t\t\t\t\t",df["Goal"][ind],"\t\t\t\t\t",df["Learnpath_name"][ind])
+                print(df["Exam"][ind],"\t\t",df["Goal"][ind],"\t\t",df["Learnpath_name"][ind])
                 format_refrence = df["Format_refrence"][ind]
                 # try:
                 response1 = self.callAPI(

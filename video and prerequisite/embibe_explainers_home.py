@@ -36,7 +36,7 @@ class Source(object):
 
                 learnmap_id = df["Learnmap_id"][ind]
                 # format_refrence = df["Format_refrence"][ind]
-                print(df["Exam"][ind],"\t\t\t\t\t",df["Goal"][ind],"\t\t\t\t\t",df["Learnmap_id"][ind],"\n")
+                print(df["Exam"][ind],"\t\t",df["Goal"][ind],"\t\t",df["Learnmap_id"][ind],"\n")
                 try:
                     response1 = self.callAPI(
                         "https://preprodms.embibe.com/fiber_ms/v1/chapters/learning-objects?&learnMapId=" + str(
