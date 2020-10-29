@@ -59,10 +59,10 @@ class Source(object):
                                 for index in inti["learning_maps_data"]:
                                     # if str(index["format_reference"]) == str(format_refrence):
                                     #     print()
-                                 if index["format_refrence"]==format_refrence:
+                                 if index["format_reference"]==format_refrence:
                                     learnpath_name = index["learnpath_name"]
                                     code = index["code"]
-                                    format_refrence = index["format_reference"]
+                                    # format_refrence = index["format_reference"]
                                     # print(code)
                                     try:
 
