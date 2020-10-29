@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import json
 import os
+import traceback
 from openpyxl import Workbook, load_workbook
 
 
@@ -35,6 +36,7 @@ class Source(object):
 
                 learnmap_id = df["Learnmap_id"][ind]
                 # format_refrence = df["Format_refrence"][ind]
+                print(df["Exam"][ind],"\t\t\t\t\t",df["Goal"][ind],"\t\t\t\t\t",df["Learnmap_id"][ind],"\n")
                 try:
                     response1 = self.callAPI(
                         "https://preprodms.embibe.com/fiber_ms/v1/chapters/learning-objects?&learnMapId=" + str(
@@ -58,11 +60,12 @@ class Source(object):
                                     # df1 = df1.drop_duplicates()
                                     df1.to_csv("Embibe_explainers_videos_home.csv", index=False)
                 except Exception as e:
-                    print(e)
+                    print(traceback.format_exc())
                     df1.loc[len(df1)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                          df["Grade"][ind], df["Learnpath_name"][ind], "", "", "", ""]
                     # df1 = df1.drop_duplicates()
                     df1.to_csv("Embibe_explainers_videos_home.csv", index=False)
+                print("\n")
 
             # else:
             #     continue

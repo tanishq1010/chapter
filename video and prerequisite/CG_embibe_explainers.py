@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import json
 import os
+import traceback
 from openpyxl import Workbook, load_workbook
 
 
@@ -33,7 +34,7 @@ class Source(object):
             # if df["Exam"][ind] == "11th CBSE":
 
                 learnpath_name1 = df["Learnpath_name"][ind]
-                print(learnpath_name1)
+                print(df["Exam"][ind],"\t\t\t\t\t",df["Goal"][ind],"\t\t\t\t\t",df["Learnpath_name"][ind])
                 format_refrence = df["Format_refrence"][ind]
                 # try:
                 response1 = self.callAPI(
@@ -76,6 +77,9 @@ class Source(object):
                                       df1.to_csv("Embibe_explainers_videos.csv", index=False)
                                     except Exception as e:
                                         # print(e)
+                                        print("EXCEPTION DUE TO SEQUENCE NOT FOUND IN DICTIONARY :" )
+                                        print("LEARNPATH NAME :",learnpath_name,"\n")
+                                        print(traceback.format_exc())
                                         df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, title, format_refrence,
                                                          e,
@@ -84,7 +88,8 @@ class Source(object):
                                         df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
 
                 except Exception as e:
-                    print(e)
+                    # print(e)
+                    print(traceback.format_exc())
                     df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, "", format_refrence,
                                                          e,
