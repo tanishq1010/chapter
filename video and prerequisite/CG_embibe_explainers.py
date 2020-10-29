@@ -51,7 +51,7 @@ class Source(object):
                       if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"][
                            "type"] == "Solved Problems asked in exams":
                        sequence = item["content"]["sequence"]
-                       PRINT("\n")
+                       print("\n")
                        print("SEQUENCE DICTIONARY :", sequence)
                        for inti in item["content"]["question_meta_tags"]:
                          for index in inti["learning_maps_data"]:
