@@ -54,7 +54,7 @@ class Source(object):
                         # print(title, "\n")
                         if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"]["type"] ==  "Solved Problems asked in exams":
                             sequence = (item["content"]["sequence"])
-                            # print(sequence)
+                            print(sequence)
                             for inti in item["content"]["question_meta_tags"]:
                                 for index in inti["learning_maps_data"]:
                                     # if str(index["format_reference"]) == str(format_refrence):

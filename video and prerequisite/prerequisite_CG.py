@@ -31,9 +31,9 @@ class Source(object):
     def main(self, df):
         df1 = pd.read_csv("Prerequisite_CG.csv")
         for ind in df.index:
-            if df["Exam"][ind] == "11th CBSE":
+         if df["Exam"][ind] == "11th CBSE":
             # break
-            
+
             learnmap_id = df["Learnmap_id"][ind]
             print("GETTING ALL Topics FOR THIS LEARN PATH FROM CG : ", learnmap_id, "\n")
             format_refrence = df["Format_refrence"][ind]

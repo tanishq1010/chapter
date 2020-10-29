@@ -1,4 +1,4 @@
-# from goal_exam_extractor import goal_exam_grade_extractor
+from goal_exam_extractor import goal_exam_grade_extractor
 from home_data_extractor import home_data
 import pandas as pd
 
@@ -36,8 +36,8 @@ if __name__ == '__main__':
     df_negative_results.to_csv("negative_learn_results.csv", index=False)
     df_positive_results.to_csv("positive_learn_results.csv", index=False)
 
-    # goal_exam_grade = goal_exam_grade_extractor()
-    df=pd.read_csv("goal_exams.csv")
+    goal_exam_grade = goal_exam_grade_extractor()
+    # df=pd.read_csv("goal_exams.csv")
     for_all_exam_goal(df)
 
     df = pd.read_csv("positive_learn_results.csv")
