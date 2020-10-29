@@ -79,7 +79,7 @@ class Source(object):
                                         # print(e)
                                         print("EXCEPTION DUE TO SEQUENCE NOT FOUND IN DICTIONARY :" )
                                         print("CHAPTER LEARNPATH NAME :",learnpath_name1,"\n")
-                                        print("LEARN PATH WHICH GAVE ERROR :"learnpath_name)
+                                        print("LEARN PATH WHICH GAVE ERROR :",learnpath_name)
                                         print(traceback.format_exc())
                                         df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, title, format_refrence,
