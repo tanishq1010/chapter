@@ -53,8 +53,8 @@ class Source(object):
                         id = int(id)
                         # print(title, "\n")
                         if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"]["type"] ==  "Solved Problems asked in exams":
-                            sequence = (item["content"]["sequence"])
-                            print(sequence)
+                            sequence = item["content"]["sequence"]
+                            print("SEQUENCE DICTIONARY :",sequence)
                             for inti in item["content"]["question_meta_tags"]:
                                 for index in inti["learning_maps_data"]:
                                     # if str(index["format_reference"]) == str(format_refrence):
@@ -67,7 +67,7 @@ class Source(object):
                                     try:
 
                                       sequence1 = sequence[code]
-                                      # print(sequence1)
+                                      print("FINDING THIS LM IN ABOVE SEQUENCE DICTIONARY",sequence1)
 
                                       df1.loc[len(df1)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, title, format_refrence,
@@ -78,7 +78,8 @@ class Source(object):
                                     except Exception as e:
                                         # print(e)
                                         print("EXCEPTION DUE TO SEQUENCE NOT FOUND IN DICTIONARY :" )
-                                        print("LEARNPATH NAME :",learnpath_name,"\n")
+                                        print("CHAPTER LEARNPATH NAME :",learnpath_name1,"\n")
+                                        print("LEARN PATH WHICH GAVE ERROR :"learnpath_name)
                                         print(traceback.format_exc())
                                         df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, title, format_refrence,
@@ -87,8 +88,11 @@ class Source(object):
                                         df2 = df2.drop_duplicates()
                                         df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
 
+                        else:
+                            continue
+
                 except Exception as e:
-                    # print(e)
+                    print("SOME OTHER ERROR OCCURED FOR THIS CHAPTER LEARN PATH :",learnpath_name1)
                     print(traceback.format_exc())
                     df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, "", format_refrence,
@@ -106,7 +110,7 @@ def return_correct_sequence(exam, goal, learnpath_name):
     df = df[df['Goal'].str.contains(goal)]
     df = df[df['Exam'].str.contains(exam)]
     df = df[df['main_learnpath'].str.contains(learnpath_name)]
-    print(df)
+    # print(df)
 
     # df2 = pd.read_csv("TopVideos.csv")
     # df2 = df2[df2['goal'].str.contains(goal)]
