@@ -29,79 +29,83 @@ class Source(object):
 
     def main(self, df):
         df1 = pd.read_csv("Embibe_explainers_videos.csv")
-        df2=pd.read_csv("Negative_Embibe_explainers_videos.csv")
+        df2 = pd.read_csv("Negative_Embibe_explainers_videos.csv")
         for ind in df.index:
             if df["Exam"][ind] == "11th CBSE":
-
-                learnpath_name1 = df["Learnpath_name"][ind]
-                print(df["Exam"][ind],"\t\t",df["Goal"][ind],"\t\t",df["Learnpath_name"][ind])
-                format_refrence = df["Format_refrence"][ind]
-                # try:
-                response1 = self.callAPI(
+              learnpath_name1 = df["Learnpath_name"][ind]
+              print(df["Exam"][ind], "\t\t", df["Goal"][ind], "\t\t", df["Learnpath_name"][ind])
+              format_refrence = df["Format_refrence"][ind]
+              try:
+                 response1 = self.callAPI(
                     "http://content-demo.embibe.com/learning_objects?where={%22status%22:%22Published%22}&lo_type=Video&lm_filter={%22format_reference%22:%22" + str(
                         format_refrence) + "%22,%22learnpath_name%22:{%22$regex%22:%22" + str(
                         learnpath_name1) + "%22}}&embed=true&max_results=100000",
                     '{}', 'GET')
                 # print(response1)
-                try:
-                    # print(response1.json())
-                    for item in response1.json()["_items"]:
-                        title = item["title"]
+                # print(response1.json())
+                 for item in response1.json()["_items"]:
+                    title = item["title"]
+                    id = item["id"]
+                    id = int(id)
+                    try:
+                      if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"][
+                           "type"] == "Solved Problems asked in exams":
+                       sequence = item["content"]["sequence"]
+                       print("SEQUENCE DICTIONARY :", sequence)
+                       for inti in item["content"]["question_meta_tags"]:
+                         for index in inti["learning_maps_data"]:
+                            # if str(index["format_reference"]) == str(format_refrence):
+                            #     print()
+                            if index["format_reference"] == format_refrence:
+                                learnpath_name = index["learnpath_name"]
+                                code = index["code"]
+                                # format_refrence = index["format_reference"]
+                                # print(code)
+                                try:
+                                    sequence1 = sequence[code]
+                                    print("FINDING THIS LM IN ABOVE SEQUENCE DICTIONARY", code)
 
-                        id = item["id"]
-                        # print(id)
-                        id = int(id)
-                        # print(title, "\n")
-                        if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"]["type"] ==  "Solved Problems asked in exams":
-                            sequence = item["content"]["sequence"]
-                            print("SEQUENCE DICTIONARY :",sequence)
-                            for inti in item["content"]["question_meta_tags"]:
-                                for index in inti["learning_maps_data"]:
-                                    # if str(index["format_reference"]) == str(format_refrence):
-                                    #     print()
-                                 if index["format_reference"]==format_refrence:
-                                    learnpath_name = index["learnpath_name"]
-                                    code = index["code"]
-                                    # format_refrence = index["format_reference"]
-                                    # print(code)
-                                    try:
-
-                                      sequence1 = sequence[code]
-                                      print("FINDING THIS LM IN ABOVE SEQUENCE DICTIONARY",sequence1)
-
-                                      df1.loc[len(df1)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
+                                    df1.loc[len(df1)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, title, format_refrence,
                                                          sequence1,
                                                          df["Subject_tagged"][ind], learnpath_name, id]
-                                      df1 = df1.drop_duplicates()
-                                      df1.to_csv("Embibe_explainers_videos.csv", index=False)
-                                    except Exception as e:
-                                        # print(e)
-                                        print("EXCEPTION DUE TO SEQUENCE NOT FOUND IN DICTIONARY :" )
-                                        print("CHAPTER LEARNPATH NAME :",learnpath_name1,"\n")
-                                        print("LEARN PATH WHICH GAVE ERROR :",learnpath_name)
-                                        print(traceback.format_exc())
-                                        df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
+                                    df1 = df1.drop_duplicates()
+                                    df1.to_csv("Embibe_explainers_videos.csv", index=False)
+                                except Exception as e:
+                                    # print(e)
+                                    print("EXCEPTION DUE TO SEQUENCE NOT FOUND IN DICTIONARY :")
+                                    print("CHAPTER LEARNPATH NAME :", learnpath_name1, "\n")
+                                    print("LEARN PATH WHICH GAVE ERROR :", learnpath_name)
+                                    print(traceback.format_exc())
+                                    df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                                          df["Grade"][ind], learnpath_name1, title, format_refrence,
                                                          e,
                                                          df["Subject_tagged"][ind], learnpath_name, id]
-                                        df2 = df2.drop_duplicates()
-                                        df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
+                                    df2 = df2.drop_duplicates()
+                                    df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
+                      else:
+                        continue
 
-                        else:
-                            continue
-
-                except Exception as e:
-                    print("SOME OTHER ERROR OCCURED FOR THIS CHAPTER LEARN PATH :",learnpath_name1)
-                    print(traceback.format_exc())
-                    df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
-                                                         df["Grade"][ind], learnpath_name1, "", format_refrence,
-                                                         e,
-                                                         df["Subject_tagged"][ind], "", ""]
-                    df2 = df2.drop_duplicates()
-                    df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
+                    except Exception as e:
+                       print("SOME ERROR OCCURED WITH INTENT CONTENT QUESTION_META_TAG FOR THIS CHAPTER LEARN PATH :", learnpath_name1,"AND TITLE :",title)
+                       print(traceback.format_exc())
+                       df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
+                                     df["Grade"][ind], learnpath_name1, "", format_refrence,
+                                     e,
+                                     df["Subject_tagged"][ind], "", ""]
+                       df2 = df2.drop_duplicates()
+                       df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
+              except Exception as e:
+                  print("SOME ERROR WITH LEARN CHAPTER LEARN PATH AND API CALLING :",learnpath_name1)
+                  print(traceback.format_exc())
+                  df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
+                                       df["Grade"][ind], learnpath_name1, "", format_refrence,
+                                       e,
+                                       df["Subject_tagged"][ind], "", ""]
+                  df2 = df2.drop_duplicates()
+                  df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
             else:
-                continue
+             continue
 
 
 def return_correct_sequence(exam, goal, learnpath_name):
@@ -110,25 +114,7 @@ def return_correct_sequence(exam, goal, learnpath_name):
     df = df[df['Goal'].str.contains(goal)]
     df = df[df['Exam'].str.contains(exam)]
     df = df[df['main_learnpath'].str.contains(learnpath_name)]
-    # print(df)
 
-    # df2 = pd.read_csv("TopVideos.csv")
-    # df2 = df2[df2['goal'].str.contains(goal)]
-    # df2 = df2[df2['exam'].str.contains(exam)]
-    # print(df2)
-    # df3 = pd.DataFrame(columns=df.columns.values)
-    # for ind in df2.index:
-    #     df_new = df.loc[df['Video_ID'] == int(df2["videoId"][ind])]
-    #     print(df_new)
-    #     if len(df_new) > 0:
-    #         df3 = pd.concat([df3, df_new])
-    #         df = df[df.Video_ID != int(df2["videoId"][ind])]
-
-    # print(df)
-    # list1 = [""] * len(df)
-    # df["length of string"] = list1
-    # for ind in df.index:
-    #     df["length of string"][ind] = len(df["Title"][ind])
 
     df.sort_values(by=['Sequence'], ascending=True,
                    inplace=True)
@@ -151,7 +137,7 @@ def CG_DB_Embibe_explainers(df):
         df1.to_csv("Embibe_explainers_videos.csv", index=False)
         df12 = pd.read_csv("Embibe_explainers_videos.csv")
         df12 = pd.DataFrame(columns=df12.columns.values)
-        df12.to_csv("Negative_Embibe_explainers_videos.csv",index=False)
+        df12.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
         src.main(df)
 
 # df = pd.read_csv("positive_learn_results.csv")
