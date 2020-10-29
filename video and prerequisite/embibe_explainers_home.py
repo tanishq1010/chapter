@@ -30,7 +30,7 @@ class Source(object):
     def main(self, df):
         df1 = pd.read_csv("Embibe_explainers_videos_home.csv")
         for ind in df.index:
-            if df["Exam"][ind] == "11th CBSE":
+            # if df["Exam"][ind] == "11th CBSE":
                 # break
 
                 learnmap_id = df["Learnmap_id"][ind]
@@ -64,8 +64,8 @@ class Source(object):
                     # df1 = df1.drop_duplicates()
                     df1.to_csv("Embibe_explainers_videos_home.csv", index=False)
 
-            else:
-                continue
+            # else:
+            #     continue
 
 
 def embibe_explainers_learn(df):

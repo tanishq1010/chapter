@@ -30,7 +30,7 @@ class Source(object):
         df1 = pd.read_csv("Embibe_explainers_videos.csv")
         df2=pd.read_csv("Negative_Embibe_explainers_videos.csv")
         for ind in df.index:
-            if df["Exam"][ind] == "11th CBSE":
+            # if df["Exam"][ind] == "11th CBSE":
 
                 learnpath_name1 = df["Learnpath_name"][ind]
                 print(learnpath_name1)
@@ -58,6 +58,7 @@ class Source(object):
                                 for index in inti["learning_maps_data"]:
                                     # if str(index["format_reference"]) == str(format_refrence):
                                     #     print()
+                                 if index["format_refrence"]==format_refrence:
                                     learnpath_name = index["learnpath_name"]
                                     code = index["code"]
                                     format_refrence = index["format_reference"]
@@ -90,8 +91,8 @@ class Source(object):
                                                          df["Subject_tagged"][ind], "", ""]
                     df2 = df2.drop_duplicates()
                     df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
-            else:
-                continue
+            # else:
+            #     continue
 
 
 def return_correct_sequence(exam, goal, learnpath_name):

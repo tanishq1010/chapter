@@ -1,0 +1,29 @@
+Goal,Exam,Grade
+CBSE,6th CBSE,6
+CBSE,7th CBSE,7
+CBSE,8th CBSE,8
+CBSE,9th CBSE,9
+CBSE,10th CBSE,10
+CBSE,11th CBSE,11
+CBSE,12th CBSE,12
+Engineering,JEE Main,PreUG
+Engineering,JEE Advanced,PreUG
+Medical,NEET,PreUG
+Banking,IBPS Clerk Prelims,PrePG
+Banking,IBPS Clerk Mains,PrePG
+Banking,IBPS PO Prelims,PrePG
+Banking,IBPS PO Mains,PrePG
+Banking,IBPS RRB Office Assistant Prelims,PrePG
+Banking,IBPS RRB Office Assistant Mains,PrePG
+Banking,IBPS RRB Officer Scale-I Prelims,PrePG
+Banking,IBPS RRB Officer Scale-I Mains,PrePG
+Banking,SBI Clerk Prelims,PrePG
+Banking,SBI Clerk Mains,PrePG
+Banking,SBI PO Prelims,PrePG
+Banking,SBI PO Mains,PrePG
+SSC,SSC,PrePG
+Teaching,CTET Paper 1,PrePG
+Teaching,CTET Paper 2,PrePG
+Railways,Railways,PrePG
+Insurance,Insurance,PrePG
+Defence,Defence,PrePG
