@@ -31,21 +31,21 @@ def for_all_exam_goal(goal_exam_grade):
 
 
 if __name__ == '__main__':
-    # df_negative_results = pd.DataFrame(columns=['Child_ID', 'Exam', 'Goal', "Grade",
-    #                                             'Title', 'Type', 'Format_refrence', 'Section_name', 'Subject',
-    #                                             'Subject_tagged', 'Learnpath_name', 'Learnmap_id',"Chapter"])
-    # df_positive_results = pd.DataFrame(columns=['Child_ID', 'Exam', 'Goal', "Grade",
-    #                                             'Title', 'Type', 'Format_refrence', 'Section_name', 'Subject',
-    #                                             'Subject_tagged', 'Learnpath_name', 'Learnmap_id',"Chapter"])
-    # df_negative_results.to_csv("negative_learn_results.csv", index=False)
-    # df_positive_results.to_csv("positive_learn_results.csv", index=False)
+    df_negative_results = pd.DataFrame(columns=['Child_ID', 'Exam', 'Goal', "Grade",
+                                                'Title', 'Type', 'Format_refrence', 'Section_name', 'Subject',
+                                                'Subject_tagged', 'Learnpath_name', 'Learnmap_id',"Chapter"])
+    df_positive_results = pd.DataFrame(columns=['Child_ID', 'Exam', 'Goal', "Grade",
+                                                'Title', 'Type', 'Format_refrence', 'Section_name', 'Subject',
+                                                'Subject_tagged', 'Learnpath_name', 'Learnmap_id',"Chapter"])
+    df_negative_results.to_csv("negative_learn_results.csv", index=False)
+    df_positive_results.to_csv("positive_learn_results.csv", index=False)
 
-    # goal_exam_grade = goal_exam_grade_extractor()
+    goal_exam_grade = goal_exam_grade_extractor()
     # df=pd.read_csv("goal_exams.csv")
-    # for_all_exam_goal(goal_exam_grade)
+    for_all_exam_goal(goal_exam_grade)
 
     df = pd.read_csv("positive_learn_results.csv")
-    # embibe_explainers_learn(df)
+    embibe_explainers_learn(df)
 
     CG_DB_Embibe_explainers(df)
     df12 = pd.read_csv("Embibe_explainers_videos.csv")

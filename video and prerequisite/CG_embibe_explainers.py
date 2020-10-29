@@ -31,7 +31,7 @@ class Source(object):
         df1 = pd.read_csv("Embibe_explainers_videos.csv")
         df2 = pd.read_csv("Negative_Embibe_explainers_videos.csv")
         for ind in df.index:
-            if df["Exam"][ind] == "11th CBSE":
+            # if df["Exam"][ind] == "11th CBSE":
               learnpath_name1 = df["Learnpath_name"][ind]
               print(df["Exam"][ind], "\t\t", df["Goal"][ind], "\t\t", df["Learnpath_name"][ind])
               format_refrence = df["Format_refrence"][ind]
@@ -51,6 +51,7 @@ class Source(object):
                       if item["content"]["key_attributes"]["type"] == "Topic Explainer" or item["content"]["key_attributes"][
                            "type"] == "Solved Problems asked in exams":
                        sequence = item["content"]["sequence"]
+                       PRINT("\n")
                        print("SEQUENCE DICTIONARY :", sequence)
                        for inti in item["content"]["question_meta_tags"]:
                          for index in inti["learning_maps_data"]:
@@ -87,7 +88,7 @@ class Source(object):
                         continue
 
                     except Exception as e:
-                       print("SOME ERROR OCCURED WITH INTENT CONTENT QUESTION_META_TAG FOR THIS CHAPTER LEARN PATH :", learnpath_name1,"AND TITLE :",title)
+                       print("SOME ERROR OCCURED WITH INTENT CONTENT QUESTION_META_TAG (SEQUENCE DICTIONARY) FOR THIS CHAPTER LEARN PATH :", learnpath_name1,"AND TITLE :",title)
                        print(traceback.format_exc())
                        df2.loc[len(df2)] = [df["Child_ID"][ind], df["Exam"][ind], df["Goal"][ind],
                                      df["Grade"][ind], learnpath_name1, "", format_refrence,
@@ -104,8 +105,8 @@ class Source(object):
                                        df["Subject_tagged"][ind], "", ""]
                   df2 = df2.drop_duplicates()
                   df2.to_csv("Negative_Embibe_explainers_videos.csv", index=False)
-            else:
-             continue
+            # else:
+            #  continue
 
 
 def return_correct_sequence(exam, goal, learnpath_name):
